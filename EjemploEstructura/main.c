@@ -21,3 +21,9 @@ int main()
     return 0;
 }
 
+
+T_Alumno *cargar()
+{
+    T_Alumno *PAlumno= (T_Alumno *) malloc (sizeof( T_Alumno));
+    return    PAlumno;
+}

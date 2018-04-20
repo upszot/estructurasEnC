@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define TAM 5
 typedef struct{
     int legajo;
     int nota1;
@@ -10,9 +11,11 @@ typedef struct{
     int estado;
 }T_Alumno;
 
+
 int main()
 {
 
+    T_Alumno list_alumnos[TAM];
 
 
     return 0;

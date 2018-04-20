@@ -16,18 +16,32 @@ typedef struct{
 T_Alumno *cargar();
 void menu();
 //hacer...
-void cargarAlumno();
+
+void cargarAlumno(T_Alumno *Alumno);
+void cargarAlumnos(T_Alumno *Alumno,int cant);
+
+void MostrarCampos(T_Alumno Alumno);
 void mostrarAlumnos(T_Alumno vector[],int cant);
+
 void modificarAlumno();
 void borrarAlumno();
 void ordenarPor();
 
+float calculapromedio(int nota1,int nota2);
+
+void get_char(char *sms,char *nombre);
+void get_int(char *sms,int dato);
+void get_int_entre(char *sms,int dato,int minimo, int maximo);
+
 int main()
 {
-
+    system("cls");
     T_Alumno list_alumnos[TAM];
 
+    cargarAlumnos(list_alumnos,TAM);
+    mostrarAlumnos(list_alumnos,TAM);
 
+    getch();
     return 0;
 }
 
@@ -46,17 +60,85 @@ T_Alumno *cargar()
     return    PAlumno;
 }
 
+void get_char(char *sms,char *texto)
+{
+    fflush(stdin);
+    printf("%s ",sms);
+    gets(texto);
+}
+void get_intMayor0(char *sms,int dato)
+{
+    do
+    {
+        printf("%s ",sms);
+        scanf("%d",dato);
+    } while(dato < 1);
+}
+void get_int_entre(char *sms,int dato,int minimo, int maximo)
+{
+    do
+    {
+        printf("%s ",sms);
+        scanf("%d",dato);
+        if(dato < minimo || dato > maximo)
+        {
+            printf("\nDebe ser entre %d y %d \n",minimo,maximo);
+        }
+    } while(dato < minimo || dato > maximo);
+}
+
+void cargarAlumnos(T_Alumno *Alumno,int cant)
+{
+    char continuar;
+    for(int i=0;i<cant;i++)
+    {
+        cargarAlumno(&Alumno[i]);
+
+        printf("\n Desea Cargar otro alumno: (s/n) ");
+        scanf("%c",continuar);
+        if(continuar=='n')
+        {
+            i=cant;
+        }
+    }
+}
+
+void cargarAlumno(T_Alumno *Alumno)
+{
+    get_char("Ingrese el nombre del alumno:",Alumno->nombre);
+    get_intMayor0("Ingrese Legajo: ",Alumno->legajo);
+    get_int_entre("Ingrese la 1er nota del alumno: ",Alumno->nota1,1,10);
+    get_int_entre("Ingrese la 2da nota del alumno: ",Alumno->nota2,1,10);
+
+    Alumno->promedio=calculapromedio(Alumno->nota2,Alumno->nota2);
+    Alumno->estado=TRUE;
+}
+
+float calculapromedio(int nota1,int nota2)
+{
+    float aux;
+    aux=(float) nota1+nota2/2;
+    return aux;
+}
+
 void mostrarAlumnos(T_Alumno vector[],int cant)
 {
     for(int i =0;i<cant;i++)
     {
-            printf("\n Nombre: %s",vector->nombre);
-            printf("\n Legajo: %d",vector->legajo);
-            printf("\n 1ra Nota: %d",vector->nota1);
-            printf("\n 2da Nota: %d",vector->nota2);
-            printf("\n Promedio: %f",vector->promedio);
-            printf("\n Estado: %d",vector->estado);
-            printf("\n\n");
+        if(vector[i].estado == TRUE)
+        {
+            MostrarCampos(vector[i]);
+        }
     }
+}
 
+void MostrarCampos(T_Alumno Alumno)
+{
+    printf("\n Nombre: %s",Alumno.nombre);
+    printf("\n Legajo: %d",Alumno.legajo);
+    printf("\n 1ra Nota: %d",Alumno.nota1);
+    printf("\n 2da Nota: %d",Alumno.nota2);
+    printf("\n Promedio: %f",Alumno.promedio);
+    printf("\n\n");
+    system("pause");
 }

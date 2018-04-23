@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "Func_Graficas.h"
+
 
 enum boolean{TRUE=1, FALSE=0};
-
+//
 #define TAM 5
 typedef struct{
     int legajo;
@@ -14,7 +17,7 @@ typedef struct{
 }T_Alumno;
 
 T_Alumno *cargar();
-void menu();
+//void menu();
 //hacer...
 
 void cargarAlumno(T_Alumno *Alumno);
@@ -35,24 +38,28 @@ void get_int_entre(char *sms,int dato,int minimo, int maximo);
 
 int main()
 {
-    system("cls");
     T_Alumno list_alumnos[TAM];
+    char seguir='s';
+    int opcion;
+    do
+    {
+        menu();
+        scanf("%d",&opcion);
+        switch(opcion)
+        {
+            case 1: //Alta
+                cargarAlumnos(list_alumnos,TAM);
+                break;
+            case 4://Mostrar
+                mostrarAlumnos(list_alumnos,TAM);
+                break;
+        }//FIN switch(opcion)
 
-    cargarAlumnos(list_alumnos,TAM);
-    mostrarAlumnos(list_alumnos,TAM);
+    }while(seguir=='s');
 
-    getch();
     return 0;
 }
 
-void menu()
-{
-        printf("\n 1. Alta");
-        printf("\n 1. Baja");
-        printf("\n 1. Modificacion");
-        printf("\n 1. Orden");
-        printf("\n\n");
-}
 
 T_Alumno *cargar()
 {

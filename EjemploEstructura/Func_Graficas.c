@@ -2,9 +2,11 @@
 void menu()
 {
     system("cls");
-    printf("\n 1. Alta");
-    printf("\n 2. Baja");
-    printf("\n 3. Modificacion");
-    printf("\n 4. Mostrar Alumno");
-    printf("\n\n");
+    printf("1. Alta \n");
+    printf("2. Baja \n");
+    printf("3. Modificacion \n");
+    printf("4. Mostrar Alumno \n");
+    printf("9, Salir \n");
+
+    printf("\n\tIngrese Opcion: ");
 }

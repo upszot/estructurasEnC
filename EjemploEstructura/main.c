@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Func_Graficas.h"
-
+#include "Func_GetDatos.h"
 
 enum boolean{TRUE=1, FALSE=0};
 //
@@ -20,7 +20,8 @@ T_Alumno *cargar();
 //void menu();
 //hacer...
 
-void cargarAlumno(T_Alumno *Alumno);
+//void cargarAlumno(T_Alumno *Alumno);
+T_Alumno PedirAlumno();
 void cargarAlumnos(T_Alumno *Alumno,int cant);
 
 void MostrarCampos(T_Alumno Alumno);
@@ -32,15 +33,28 @@ void ordenarPor();
 
 float calculapromedio(int nota1,int nota2);
 
-void get_char(char *sms,char *nombre);
-void get_int(char *sms,int dato);
-void get_int_entre(char *sms,int dato,int minimo, int maximo);
+//void get_char(char *sms,char *nombre);
+
+
+
+
 
 int main()
 {
     T_Alumno list_alumnos[TAM];
     char seguir='s';
     int opcion;
+
+
+    //------------- BORRAR -------
+    T_Alumno alumno;
+//    cargarAlumno(&alumno);
+    alumno=PedirAlumno();
+    MostrarCampos(alumno);
+
+    system("pause");
+    //-------------------
+
     do
     {
         menu();
@@ -52,6 +66,9 @@ int main()
                 break;
             case 4://Mostrar
                 mostrarAlumnos(list_alumnos,TAM);
+                break;
+            case 9://salir
+                seguir = 'n';
                 break;
         }//FIN switch(opcion)
 
@@ -67,39 +84,15 @@ T_Alumno *cargar()
     return    PAlumno;
 }
 
-void get_char(char *sms,char *texto)
-{
-    fflush(stdin);
-    printf("%s ",sms);
-    gets(texto);
-}
-void get_intMayor0(char *sms,int dato)
-{
-    do
-    {
-        printf("%s ",sms);
-        scanf("%d",dato);
-    } while(dato < 1);
-}
-void get_int_entre(char *sms,int dato,int minimo, int maximo)
-{
-    do
-    {
-        printf("%s ",sms);
-        scanf("%d",dato);
-        if(dato < minimo || dato > maximo)
-        {
-            printf("\nDebe ser entre %d y %d \n",minimo,maximo);
-        }
-    } while(dato < minimo || dato > maximo);
-}
+
 
 void cargarAlumnos(T_Alumno *Alumno,int cant)
 {
     char continuar;
     for(int i=0;i<cant;i++)
     {
-        cargarAlumno(&Alumno[i]);
+        //cargarAlumno(&Alumno[i]);
+        Alumno[i]=PedirAlumno();
 
         printf("\n Desea Cargar otro alumno: (s/n) ");
         scanf("%c",continuar);
@@ -110,22 +103,29 @@ void cargarAlumnos(T_Alumno *Alumno,int cant)
     }
 }
 
+/*
 void cargarAlumno(T_Alumno *Alumno)
-{
-    get_char("Ingrese el nombre del alumno:",Alumno->nombre);
-    get_intMayor0("Ingrese Legajo: ",Alumno->legajo);
-    get_int_entre("Ingrese la 1er nota del alumno: ",Alumno->nota1,1,10);
-    get_int_entre("Ingrese la 2da nota del alumno: ",Alumno->nota2,1,10);
+{//Carga datos de 1 alumno
 
+    strcpy(Alumno->nombre, get_char("Ingrese el nombre del alumno:",50));
+    Alumno->legajo=Get_intMayor_X("Ingrese Legajo: ",1);
+    Alumno->nota1=get_int_entre("Ingrese la 1er nota del alumno: ",1,10);
+    Alumno->nota2=get_int_entre("Ingrese la 2da nota del alumno: ",1,10);
     Alumno->promedio=calculapromedio(Alumno->nota2,Alumno->nota2);
     Alumno->estado=TRUE;
 }
+*/
+T_Alumno PedirAlumno()
+{//Carga datos, y devuelve un alumno
+    T_Alumno aux_Alumno;
+    strcpy(aux_Alumno.nombre, get_char("Ingrese el nombre del alumno:",50));
+    aux_Alumno.legajo=Get_intMayor_X("Ingrese Legajo: ",1);
+    aux_Alumno.nota1=get_int_entre("Ingrese la 1er nota del alumno: ",1,10);
+    aux_Alumno.nota2=get_int_entre("Ingrese la 2da nota del alumno: ",1,10);
+    aux_Alumno.promedio=calculapromedio(aux_Alumno.nota1,aux_Alumno.nota2);
+    aux_Alumno.estado=TRUE;
 
-float calculapromedio(int nota1,int nota2)
-{
-    float aux;
-    aux=(float) nota1+nota2/2;
-    return aux;
+    return aux_Alumno;
 }
 
 void mostrarAlumnos(T_Alumno vector[],int cant)

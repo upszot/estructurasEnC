@@ -3,15 +3,25 @@
 	<stdio.h>
 	<stdlib.h>
 
-1524527781 source:e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\main.c
+1524533378 source:e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	"Func_Graficas.c"
+	"Func_Graficas.h"
+	"Func_GetDatos.h"
 
 1524527761 e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\func_graficas.c
 	<stdio.h>
 
-1524527761 source:e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\func_graficas.c
+1524531901 source:e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\func_graficas.c
 	<stdio.h>
+
+1524527876 e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\func_graficas.h
+
+1524533360 source:e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\func_getdatos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1524532012 e:\documentos\tecnicatura\programacion\estructurasenc\ejemploestructura\func_getdatos.h
 

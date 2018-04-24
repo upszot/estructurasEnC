@@ -17,7 +17,7 @@ typedef struct{
 }T_Alumno;
 
 T_Alumno *cargar();
-//void menu();
+
 //hacer...
 
 //void cargarAlumno(T_Alumno *Alumno);
@@ -33,11 +33,6 @@ void ordenarPor();
 
 float calculapromedio(int nota1,int nota2);
 
-//void get_char(char *sms,char *nombre);
-
-
-
-
 
 int main()
 {
@@ -49,6 +44,9 @@ int main()
     //------------- BORRAR -------
     T_Alumno alumno;
 //    cargarAlumno(&alumno);
+
+
+
     alumno=PedirAlumno();
     MostrarCampos(alumno);
 
@@ -118,13 +116,31 @@ void cargarAlumno(T_Alumno *Alumno)
 T_Alumno PedirAlumno()
 {//Carga datos, y devuelve un alumno
     T_Alumno aux_Alumno;
-    strcpy(aux_Alumno.nombre, get_char("Ingrese el nombre del alumno:",50));
+    //strcpy(aux_Alumno.nombre,"pepe");
+    aux_Alumno.legajo=1;
+    aux_Alumno.nota1=10;
+    aux_Alumno.nota2=9;
+    aux_Alumno.promedio=9;
+    aux_Alumno.estado=TRUE;
+
+    char *aux_nombre=get_char("Ingrese el nombre del alumno:",50);
+/*  //pq si descomento esto funciona bien el codigo ... si no tiene nada que ver...
+// sera algun flush?
+
+    char nombre[50];
+    strcpy(nombre,aux_nombre);
+    printf("\nnombre temp: %s \n ",nombre);
+*/
+
+    strcpy(aux_Alumno.nombre,aux_nombre );
+//    strcpy(aux_Alumno.nombre, get_char("Ingrese el nombre del alumno:",50));
+    /*
     aux_Alumno.legajo=Get_intMayor_X("Ingrese Legajo: ",1);
     aux_Alumno.nota1=get_int_entre("Ingrese la 1er nota del alumno: ",1,10);
     aux_Alumno.nota2=get_int_entre("Ingrese la 2da nota del alumno: ",1,10);
     aux_Alumno.promedio=calculapromedio(aux_Alumno.nota1,aux_Alumno.nota2);
     aux_Alumno.estado=TRUE;
-
+*/
     return aux_Alumno;
 }
 

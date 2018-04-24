@@ -11,46 +11,29 @@ void get_char(char *sms,char *texto)
     printf("%s ",sms);
     gets(texto);
 }
-
-//preguntar que onda con esto...
-
-char *get_char(char *sms,int LongitudCadena)
-{
-    char Texto[LongitudCadena];
-    char *PunteroTexto;
-    fflush(stdin);
-
-        printf("%s ",sms);
-        fgets(Texto,LongitudCadena,stdin);
-        PunteroTexto=Texto;
-        return Texto;
-}
-
 */
 
 char *get_char(char *sms,int LongitudCadena)
 {
-    char  Aux_texto[200];
-    char Texto[LongitudCadena];
-
+    char *PTexto= (char *) malloc (sizeof(char)*LongitudCadena);
+    char *TextoLibre;
+    fflush(stdin);
+    int flag=0;
     do
     {
-        fflush(stdin);
         printf("%s ",sms);
-        gets(Aux_texto);
-        fflush(stdin);
+        gets(TextoLibre);
+        if(flag==1)
+        {
+            printf("\n La longitud maxima del campo es: %d \n",LongitudCadena);
+            system("pause");
+            system("cls");
+        }
+        flag=1;
+    }while(strlen(TextoLibre) >= LongitudCadena);
 
-        if(strlen(Aux_texto)+1<LongitudCadena)
-        {
-            strcpy(Texto,Aux_texto);
-        }
-        else
-        {
-            printf("\n Usted exedio la longitud Maxima permitida del campo (%d) ",LongitudCadena -1);
-            printf("\n Por favor reingrese el dato pedido:" );
-        }
-    }while(strlen(Aux_texto)+1>=LongitudCadena);
-    return Texto;
+    strcpy(PTexto,TextoLibre);
+    return PTexto;
 }
 
 int get_int_entre(char *sms,int minimo, int maximo)

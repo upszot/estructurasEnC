@@ -11,6 +11,21 @@ void get_char(char *sms,char *texto)
     printf("%s ",sms);
     gets(texto);
 }
+
+//preguntar que onda con esto...
+
+char *get_char(char *sms,int LongitudCadena)
+{
+    char Texto[LongitudCadena];
+    char *PunteroTexto;
+    fflush(stdin);
+
+        printf("%s ",sms);
+        fgets(Texto,LongitudCadena,stdin);
+        PunteroTexto=Texto;
+        return Texto;
+}
+
 */
 
 char *get_char(char *sms,int LongitudCadena)
